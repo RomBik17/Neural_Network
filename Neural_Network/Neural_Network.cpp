@@ -1,7 +1,9 @@
 
+//inluding of grey_balance.h must be on the top of header, cause SFML need to be heighter then standart libs
 #include "grey_balance.h"
 #include <iomanip>
 #include <chrono>
+//including our network class
 #include "network.h"
 
 void make_lib()
@@ -14,7 +16,7 @@ void make_lib()
 void base_test()
 {
 	string photo_name = "C:\\Users\\rrafa\\Desktop\\image_test\\D.png";
-	// decoding image to numbers by calculating the saturation of red in each pixel
+	//decoding image to numbers by calculating the saturation of red in each pixel
 	ImageDecoder::red_balance(photo_name);
 	cout << "Image has been decomposed" << endl;
 	ifstream fin;

@@ -1,6 +1,7 @@
 
 #include "grey_balance.h"
 
+//optional funstions for converting string and LPWSTR
 LPWSTR ConvertString(const std::string instr)
 {
 	int bufferlen = MultiByteToWideChar(CP_ACP, 0, instr.c_str(), instr.size(), NULL, 0);
@@ -25,13 +26,16 @@ namespace ImageDecoder {
 		std::ofstream fout;
 		fout.open("Image.txt");
 		sf::Image img;
+		//loading the image
 		img.loadFromFile(filename);
+		//calculation of size
 		const int height = img.getSize().y;
 		const int width = img.getSize().x;
 		for (int i = 0; i < height; i++)
 		{
 			for (int j = 0; j < width; j++)
 			{
+				//getting the saturation of red in each pixel
 				double x = 1 - (img.getPixel(j, i).r) / 255.0;
 				fout << round(x * 1000) / 1000 << " ";
 			}
@@ -43,9 +47,11 @@ namespace ImageDecoder {
 
 	void lib_maker(std::string folder_name, std::string object_type)
 	{
+		//hook for folder
 		WIN32_FIND_DATAW wfd;
 		HANDLE const hFind = FindFirstFileW(ConvertString(folder_name + "\\*"), &wfd);
 		setlocale(LC_ALL, "");
+		//if we caught file in folder, we would decode those files
 		if (INVALID_HANDLE_VALUE != hFind)
 		{
 			std::ofstream fout;

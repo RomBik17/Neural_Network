@@ -4,6 +4,7 @@ using namespace std;
 
 namespace NeuralNetwork {
 
+	//sigmoid function as activation of neuron
 	inline double sigmoid(double x)
 	{
 		return (1 / (1 + pow(2.71828, -x)));
@@ -24,6 +25,7 @@ namespace NeuralNetwork {
 		lib_adress = libname;
 		count_study = test_count;
 		input = new double[p[0]];
+		//if we want to train the network, we will create an new one with random weights
 		if (have_to_study)
 		{
 			srand(time(0));
@@ -45,6 +47,7 @@ namespace NeuralNetwork {
 				}
 			}
 		}
+		//else we'll build a network with weights from file
 		else
 		{
 			ifstream fin;
@@ -70,12 +73,14 @@ namespace NeuralNetwork {
 		}
 	}
 
+	//the derivative of sigmoid function
 	double perceptron::def_sigmoid(double x)
 	{
 		double i = sigmoid(x);
 		return i * (1.0 - i);
 	}
 
+	//training
 	void perceptron::study()
 	{
 		srand(time(0));
@@ -94,6 +99,7 @@ namespace NeuralNetwork {
 			fin.open(lib_adress);
 			for (int i = 0; i < n; i++)
 			{
+				//we read the whole library
 				double temp;
 				for (int j = 0; j < size[0]; j++)
 				{
@@ -102,6 +108,7 @@ namespace NeuralNetwork {
 				}
 				fin >> data[i].rresult;
 			}
+			//while network can't solve the whole library, it will training
 			for (int e = 0; ra / n * 100 < 100; e++)
 			{
 				ra = 0;
@@ -114,6 +121,7 @@ namespace NeuralNetwork {
 					rresult = data[i].rresult;
 					set_input(input);
 
+					//getting a result
 					result = ForwardFeed();
 
 					if (output_set[result] == rresult)
@@ -128,6 +136,7 @@ namespace NeuralNetwork {
 							if (rresult == output_set[i]) break;
 							i++;
 						}
+						//for incorrect result we will calculate errors
 						BackPropagation(i, lr);
 					}
 				}
@@ -145,6 +154,7 @@ namespace NeuralNetwork {
 		fin.close();
 	}
 
+	//creation of input layer
 	void perceptron::set_input(double* p)
 	{
 		for (int i = 0; i < size[0]; i++)
@@ -153,6 +163,7 @@ namespace NeuralNetwork {
 		}
 	}
 
+	//clearing of old values
 	void perceptron::LayersCleaner(int LayerNum, int begin, int end)
 	{
 		for (int i = begin; i < end; i++)
@@ -161,6 +172,7 @@ namespace NeuralNetwork {
 		}
 	}
 
+	//calcalation for whole layer
 	void perceptron::ForwardFeeder(int LayerNum, int begin, int end)
 	{
 		for (int j = begin; j < end; j++)
@@ -173,6 +185,7 @@ namespace NeuralNetwork {
 		}
 	}
 
+	//getting a result
 	double perceptron::ForwardFeed()
 	{
 		for (int i = 1; i < layers; i++)
