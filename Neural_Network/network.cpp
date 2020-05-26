@@ -14,7 +14,7 @@ namespace NeuralNetwork {
 		value = sigmoid(value);
 	}
 
-	perceptron::perceptron(bool study, int n, int* p, int test_count, vector<char> out_set, string filename, string libname)
+	perceptron::perceptron(bool study, int n, int* p, int test_count, vector<string> out_set, string filename, string libname)
 	{
 		for (auto a : out_set)
 		{
@@ -81,7 +81,7 @@ namespace NeuralNetwork {
 		srand(time(0));
 		ifstream fin;
 		double lr = 0.5;
-		char rresult;
+		string rresult;
 		double result;
 		double ra = 0;
 		int maxra = 0;
@@ -265,7 +265,7 @@ namespace NeuralNetwork {
 		double result;
 		cout << "Start test:(1/0) ";
 		bool to_start_test = 1;
-		char right_res;
+		string right_res;
 		if (to_start_test) {
 			fin.open(filename);
 			for (int i = 0; i < size[0]; i++)

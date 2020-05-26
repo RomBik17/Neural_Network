@@ -27,7 +27,7 @@ namespace NeuralNetwork {
 	private:
 		string lib_adress;
 		int layers;
-		vector<char> output_set;
+		vector<string> output_set;
 		neuron** neurons;
 		double*** weights;
 		int* size;
@@ -45,7 +45,7 @@ namespace NeuralNetwork {
 		void BackPropagation(double rresult, double lr);
 		bool SaveWeights();
 	public:
-		perceptron(bool study, int n, int* p, int test_count, vector<char> out_set, string filename = "weights.txt", string libname = "lib.txt");
+		perceptron(bool study, int n, int* p, int test_count, vector<string> out_set, string filename = "weights.txt", string libname = "lib.txt");
 		void work(string filename);
 	};
 

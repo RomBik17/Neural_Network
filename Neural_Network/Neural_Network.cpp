@@ -19,17 +19,17 @@ void base_test()
 	fin.open("output_set.txt");
 	int out_neurons;
 	fin >> out_neurons;
-	vector<char> output_set;
+	vector<string> output_set;
 	for (int i = 0; i < out_neurons; i++)
 	{
-		char local;
+		string local;
 		fin >> local;
 		output_set.push_back(local);
 	}
 	int size[4] = { 4096, 256, 64, out_neurons };
 	typedef chrono::seconds s;
 	auto start = chrono::high_resolution_clock::now();
-	NeuralNetwork::perceptron nn(false, 4, size, 83, output_set);
+	NeuralNetwork::perceptron nn(true, 4, size, 83, output_set);
 	nn.work("Image.txt");
 	auto end = chrono::high_resolution_clock::now();
 	chrono::duration<float> duration = end - start;
