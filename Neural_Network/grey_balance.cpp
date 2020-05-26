@@ -20,7 +20,7 @@ std::string convLPCWSTRtoString(LPCWSTR wString)
 
 namespace ImageDecoder {
 
-	int grey_balance(std::string filename)
+	int red_balance(std::string filename)
 	{
 		std::ofstream fout;
 		fout.open("Image.txt");
@@ -49,7 +49,7 @@ namespace ImageDecoder {
 		if (INVALID_HANDLE_VALUE != hFind)
 		{
 			std::ofstream fout;
-			fout.open("eagles.txt");
+			fout.open("folder.txt");
 			do
 			{
 				std::string filename = folder_name + "\\" + convLPCWSTRtoString(&wfd.cFileName[0]);

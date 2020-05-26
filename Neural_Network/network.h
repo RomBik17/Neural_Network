@@ -12,6 +12,7 @@ namespace NeuralNetwork {
 
 	inline double sigmoid(double x);
 
+	//type of input data
 	struct data_one {
 		vector<double> info;
 		char rresult;
@@ -28,7 +29,9 @@ namespace NeuralNetwork {
 		string lib_adress;
 		int layers;
 		vector<string> output_set;
+		// this two-dimentional array consists from neurons from each layer
 		neuron** neurons;
+		// this three-dimentional array consists from all weights
 		double*** weights;
 		int* size;
 		double* input;

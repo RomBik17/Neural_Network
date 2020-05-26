@@ -8,7 +8,7 @@
 
 namespace ImageDecoder {
 
-	int grey_balance(std::string filename);
+	int red_balance(std::string filename);
 
 	void lib_maker(std::string folder_name, std::string object_type);
 
